@@ -85,9 +85,62 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Filler Content',
+    date: 'Jan 16st, 2020',
+    firstParagraph: `The Future is Best! The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!
+    The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!
+    The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!`,
+
+    secondParagraph: `The Future is Best! The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!
+    The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!
+    The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!`,
+
+    thirdParagraph: `The Future is Best! The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!
+    The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!
+    The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!The Future is Best!`,
   }
 ];
+function createArticle (title, date, firstParagraph, secondParagraph, thirdParagraph){
+  const divArticle = document.createElement("div");
+  const titleArticle = document.createElement("h2");
+  const dateArticle = document.createElement("p");
+  const firstPArticle = document.createElement("p");
+  const secondPArticle = document.createElement("p");
+  const thirdPArticle = document.createElement("p");
+  const spanArticle =  document.createElement("span");
 
+  divArticle.append(titleArticle);
+  divArticle.append(dateArticle);
+  divArticle.append(firstPArticle);
+  divArticle.append(secondPArticle);
+  divArticle.append(thirdPArticle);
+  divArticle.append(spanArticle);
+
+  divArticle.classList.add("article");
+  dateArticle.classList.add("date");
+  spanArticle.classList.add("expandButton");
+
+  titleArticle.textContent = title;
+  dateArticle.textContent = date;
+  firstPArticle.textContent = firstParagraph;
+  secondPArticle.textContent = secondParagraph;
+  thirdPArticle.textContent = thirdParagraph;
+  spanArticle.textContent = "\u25bc";
+
+  spanArticle.addEventListener("click", event => {
+    console.log("button clicked", event.target);
+    divArticle.classList.toggle("article-open");
+  })
+
+  return divArticle
+}
+const articles = document.querySelector (".articles")
+data.forEach(data => {
+  articles.append(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+  console.log(data)
+})
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   <div class="article">
